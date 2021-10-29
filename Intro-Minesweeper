@@ -77,6 +77,7 @@ public class IntroActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //determining totalMines
                 totalMines += isIncrease ? 1 : -1;
                 totalMines = (totalMines < MINES_MIN) ? MINES_MIN : Math.min(totalMines, boardSize * boardSize);
                 minesTextView.setText(String.valueOf(totalMines));
