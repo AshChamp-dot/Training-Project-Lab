@@ -10,6 +10,7 @@ public class IntroActivity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
+        //getting current state
         savedInstanceState.putInt("boardSize", boardSize);
         savedInstanceState.putInt("totalMines", totalMines);
     }
@@ -24,6 +25,7 @@ public class IntroActivity {
 
         if (savedInstanceState != null) {
             boardSize = savedInstanceState.getInt("boardSize");
+            //that is the board size
             totalMines = savedInstanceState.getInt("totalMines");
         }
 
