@@ -72,7 +72,8 @@ public class IntroActivity {
             }
         });
     }
-
+//  set up mines
+// on the click of button
     private View.OnClickListener createFloatBtnListener(final boolean isIncrease) {
         final TextView minesTextView = findViewById(R.id.minesTextView);
 
