@@ -8,7 +8,7 @@ public class IntroActivity {
     private int boardSize;
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(Bundle savedInstanceState) { //bundle is used to use independent for passing data between various activities of android
         super.onSaveInstanceState(savedInstanceState);
         //getting current state
         savedInstanceState.putInt("boardSize", boardSize);
@@ -19,7 +19,8 @@ public class IntroActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-
+        
+        // text view for android displays text to the users and also enables them to edit it
         final TextView sizeTextView = findViewById(R.id.sizeTextView);
         final TextView minesTextView = findViewById(R.id.minesTextView);
 
@@ -29,21 +30,22 @@ public class IntroActivity {
             totalMines = savedInstanceState.getInt("totalMines");
         }
 
-        boardSize = (boardSize == 0) ? BOARD_MIN_SIZE : boardSize;
-        totalMines = (totalMines == 0) ? MINES_MIN : totalMines;
+        boardSize = (boardSize == 0) ? BOARD_MIN_SIZE : boardSize; // if board size is less than min size
+        totalMines = (totalMines == 0) ? MINES_MIN : totalMines;   // if number of mines is less than min mines
         sizeTextView.setText(getApplicationContext().getString(R.string.board_size, String.valueOf(boardSize)));
         minesTextView.setText(String.valueOf(totalMines));
 
         final FluidSlider sizeSlider = findViewById(R.id.sizeSlider);
-        sizeSlider.setStartText(String.valueOf(BOARD_MIN_SIZE));
+        sizeSlider.setStartText(String.valueOf(BOARD_MIN_SIZE)); // in android slider is used to chnage values using the thumb
         sizeSlider.setEndText(String.valueOf(BOARD_MAX_SIZE));
         sizeSlider.setBubbleText(String.valueOf(boardSize));
         sizeSlider.setPosition(0);
 
         sizeSlider.setPositionListener(value -> {
             boardSize = (int) (value * (BOARD_MAX_SIZE - BOARD_MIN_SIZE)) + BOARD_MIN_SIZE;
-            sizeTextView.setText(getApplicationContext().getString(R.string.board_size, String.valueOf(boardSize)));
+            sizeTextView.setText(getApplicationContext().getString(R.string.board_size, String.valueOf(boardSize))); //R is dynamically generated class to access all the assts
             sizeSlider.setBubbleText(String.valueOf(boardSize));
+
 
             if (totalMines > boardSize * boardSize) {
                 totalMines = boardSize * boardSize;
